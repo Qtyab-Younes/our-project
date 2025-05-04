@@ -1,0 +1,45 @@
+<app-product></app-product>
+<h1>TP CL&IHM n°2 : Angular, gestion de couleurs</h1>
+
+<!-- 
+  pre est la balise qui indique à HTML de conserver le formattage du texte qui y est contenu 
+  Le pipe json permet de formatter la sérialisation de l'objet color() de manière élégante
+ -->
+<pre>On considère la couleur color = {{color() | json}}</pre>
+<pre>Son code hexadécimal est {{hexColor()}}</pre>
+
+<!-- Le widget HTML de sélection d'une couleur :
+     - ngModel permet de lier la valeur de l'input à une expression
+     - ngModelChange permet d'exécuter une instruction lorsque l'utilisateur modifie l'input 
+     -->
+     Le widget HTML de sélection d'une couleur :
+     <input type="color" [ngModel]="hexColor()" (ngModelChange)="setColor($event)" />
+     <div>
+             <div>
+             <input type="range" id="red" min="0" max="255" value="0" [ngModel]="color().red" (ngModelChange)="setColorIntensity('red',$event)"/>
+               <label for="red">red</label>
+             </div>
+     <div>
+               <input type="range" id="green" min="0" max="255" value="0" [ngModel]="color().green" (ngModelChange)="setColorIntensity('green',$event)" />
+               <label for="green">green</label>
+             </div>
+             <div>
+               <input type="range" id="blue" min="0" max="255" value="0" [ngModel]="color().blue" (ngModelChange)="setColorIntensity('blue',$event)" />
+               <label for="blue">blue</label>
+             </div>
+
+          <div>
+            
+              <table>
+                <tbody>
+                  @for (row of pixelArtHex();let rowIndex = $index; track row) {
+                    <tr>
+                      @for (cell of row;let colIndex = $index; track cell) {
+                        <td (click)="updateCell(rowIndex,colIndex)" [style.background-color]="cell"></td>
+                      }
+                    </tr>
+                  }
+                </tbody>
+              </table>
+             </div>
+                

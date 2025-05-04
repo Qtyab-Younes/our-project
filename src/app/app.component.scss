@@ -1,0 +1,14 @@
+$W: 32px;
+
+:host {
+
+    table {
+        border-collapse: collapse;
+        border: solid black 1px;
+
+        td {
+            width: $W;
+            height: $W;
+        }
+    }
+}
